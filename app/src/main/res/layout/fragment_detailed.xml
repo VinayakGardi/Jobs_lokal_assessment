@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.DetailedFragment">
+
+
+        <ImageView
+            android:id="@+id/job_picture"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white"
+            android:src="@drawable/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/job_detailed_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Title"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/job_picture" />
+
+        <TextView
+            android:id="@+id/job_detailed_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="@dimen/_17ssp"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_title"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_title" />
+
+        <TextView
+            android:id="@+id/job_detailed_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Salary"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_place"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_place" />
+
+        <TextView
+            android:id="@+id/job_detailed_experience"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Experience"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_salary"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_salary" />
+
+        <TextView
+            android:id="@+id/job_detailed_qualification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Qualification"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_experience"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_experience" />
+
+        <TextView
+            android:id="@+id/job_detailed_phoneno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="PhoneNumber"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_qualification"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_qualification" />
+
+        <TextView
+            android:id="@+id/job_detailed_jobHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Job Hour"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_phoneno"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_phoneno" />
+
+        <TextView
+            android:id="@+id/job_detailed_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Role"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_jobHour"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_jobHour" />
+
+        <TextView
+            android:id="@+id/job_detailed_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Category"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_role"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_role" />
+
+
+        <TextView
+            android:id="@+id/job_detailed_expiry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Expire date"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_category"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_category" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
