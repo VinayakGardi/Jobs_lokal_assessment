@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_jobFragment_to_bookMarkFragment"
             app:destination="@id/bookMarkFragment" />
+        <action
+            android:id="@+id/action_jobFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookMarkFragment"
@@ -22,5 +25,12 @@
         <action
             android:id="@+id/action_bookMarkFragment_to_jobFragment"
             app:destination="@id/jobFragment" />
+        <action
+            android:id="@+id/action_bookMarkFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.vinayakgardi.lokal_assessment_jobs.ui.DetailedFragment"
+        android:label="DetailedFragment" />
 </navigation>
