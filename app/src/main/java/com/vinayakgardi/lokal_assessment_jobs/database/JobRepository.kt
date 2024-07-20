@@ -8,7 +8,7 @@ class JobRepository(private val jobDao: JobDao) {
         jobDao.insertJob(jobBookmark)
     }
 
-     fun getAllJobs(): List<JobBookmark> {
+    suspend fun getAllJobs(): List<JobBookmark> {
         return jobDao.getAllJobs()
     }
 

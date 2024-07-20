@@ -13,7 +13,7 @@ interface JobDao {
     suspend fun insertJob(jobBookmark: JobBookmark)
 
     @Query("SELECT * FROM bookmarked_jobs")
-     fun getAllJobs(): List<JobBookmark>
+    suspend fun getAllJobs(): List<JobBookmark>
 
     @Query("DELETE FROM bookmarked_jobs WHERE id = :jobId")
     suspend fun deleteJobById(jobId: Int)

@@ -71,8 +71,7 @@ class DetailedFragment : Fragment() {
         binding.jobDetailedExperience.text = "Experience : ${jobDetail.experience}"
         binding.jobDetailedExpiry.text = "Expire on : ${jobDetail.expire_on.substring(0, 10)}"
         binding.jobDetailedRole.text = "Job Role : ${jobDetail.job_role}"
-        binding.jobDetailedQualification.text =
-            "Qualification : ${jobDetail.primary_details.Qualification}"
+        binding.jobDetailedQualification.text = "Qualification : ${jobDetail.primary_details.Qualification}"
         binding.jobDetailedJobHour.text = "Job hours : ${jobDetail.job_category}"
         binding.jobDetailedCategory.text = "Job Category : ${jobDetail.job_hours}"
         Utilities.loadImage(requireContext(), binding.jobPicture, jobDetail.creatives[0].file)

@@ -19,4 +19,5 @@ data class JobBookmark(
     val jobHours: String,
     val jobCategory: String,
     val imageUrl: String
-)
+) : Serializable
+
