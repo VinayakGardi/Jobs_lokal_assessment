@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent">
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -17,13 +15,24 @@
 
         <ImageView
             android:id="@+id/job_picture"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="200dp"
             android:background="@color/white"
             android:src="@drawable/image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginRight="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/job_item_saved"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/job_item_saved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@null"
+            android:padding="8dp"
+            android:src="@drawable/ic_star_outline"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -37,14 +46,24 @@
             app:layout_constraintTop_toBottomOf="@+id/job_picture" />
 
         <TextView
+            android:id="@+id/job_detailed_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Company"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_title"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_title" />
+
+        <TextView
             android:id="@+id/job_detailed_place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="Location"
             android:textSize="@dimen/_17ssp"
-            android:padding="10dp"
-            app:layout_constraintStart_toStartOf="@+id/job_detailed_title"
-            app:layout_constraintTop_toBottomOf="@+id/job_detailed_title" />
+            app:layout_constraintStart_toStartOf="@+id/job_detailed_company"
+            app:layout_constraintTop_toBottomOf="@+id/job_detailed_company" />
 
         <TextView
             android:id="@+id/job_detailed_salary"
