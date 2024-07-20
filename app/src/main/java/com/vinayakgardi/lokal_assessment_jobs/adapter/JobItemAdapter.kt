@@ -49,7 +49,9 @@ class JobItemAdapter(val context: Context, var jobList: List<Result>) :
     }
 
     fun updateData(newJobList: List<Result>) {
-        jobList = newJobList
+        jobList = newJobList.toMutableList()
         notifyDataSetChanged()
     }
+
+
 }

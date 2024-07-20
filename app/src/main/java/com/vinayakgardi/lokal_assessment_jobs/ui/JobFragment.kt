@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.vinayakgardi.lokal_assessment_jobs.R
 import com.vinayakgardi.lokal_assessment_jobs.adapter.JobItemAdapter
 import com.vinayakgardi.lokal_assessment_jobs.api.ApiInstance
@@ -25,19 +26,17 @@ class JobFragment : Fragment() {
 
     private lateinit var binding: FragmentJobBinding
     private lateinit var adapter: JobItemAdapter
-    private var jobList = listOf<Result>()
+    private var allJobs = listOf<Result>()
+    private var displayedJobs = listOf<Result>()
+    private val chunkSize = 20
+    private var currentIndex = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentJobBinding.inflate(inflater, container, false)
-
 
         setupRecyclerView()
         checkInternetAndFetchData()
@@ -61,8 +60,9 @@ class JobFragment : Fragment() {
                 val data = response.body()
                 withContext(Dispatchers.Main) {
                     if (data != null) {
-                        jobList = data.results // Assuming `results` is the list in `Data`
-                        adapter.updateData(jobList)
+                        allJobs = data.results
+                        loadMoreJobs()
+                        setupScrollListener()
                     }
                 }
             } else {
@@ -71,10 +71,33 @@ class JobFragment : Fragment() {
         }
     }
 
+    private fun loadMoreJobs() {
+        val endIndex = (currentIndex + chunkSize).coerceAtMost(allJobs.size)
+        displayedJobs = allJobs.subList(0, endIndex)
+        adapter.updateData(displayedJobs)
+        currentIndex = endIndex
+    }
+
     private fun setupRecyclerView() {
-        adapter = JobItemAdapter(requireContext(), jobList)
+        adapter = JobItemAdapter(requireContext(), displayedJobs)
         binding.jobRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.jobRecyclerView.adapter = adapter
+    }
+
+    private fun setupScrollListener() {
+        binding.jobRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val totalItemCount = layoutManager.itemCount
+                val visibleItemCount = layoutManager.childCount
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount && currentIndex < allJobs.size) {
+                    loadMoreJobs()
+                }
+            }
+        })
     }
 
     private fun showNoInternetDialog() {
