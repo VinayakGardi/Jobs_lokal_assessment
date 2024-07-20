@@ -32,10 +32,18 @@ class DetailedFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(JobViewModel::class.java)
 
         val jobId = arguments?.getInt("jobId")
-        fetchData(jobId)
+
+
+
+            fetchData(jobId)
+
+
 
         return binding.root
     }
+
+
+
 
     private fun fetchData(jobId: Int?) {
         lifecycleScope.launch(Dispatchers.IO) {
@@ -72,8 +80,8 @@ class DetailedFragment : Fragment() {
         binding.jobDetailedExpiry.text = "Expire on : ${jobDetail.expire_on.substring(0, 10)}"
         binding.jobDetailedRole.text = "Job Role : ${jobDetail.job_role}"
         binding.jobDetailedQualification.text = "Qualification : ${jobDetail.primary_details.Qualification}"
-        binding.jobDetailedJobHour.text = "Job hours : ${jobDetail.job_category}"
-        binding.jobDetailedCategory.text = "Job Category : ${jobDetail.job_hours}"
+        binding.jobDetailedJobHour.text = "Job hours : ${jobDetail.job_hours}"
+        binding.jobDetailedCategory.text = "Job Category : ${jobDetail.job_category}"
         Utilities.loadImage(requireContext(), binding.jobPicture, jobDetail.creatives[0].file)
 
         if (isSaved) {

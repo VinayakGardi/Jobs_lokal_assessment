@@ -1,5 +1,6 @@
 package com.vinayakgardi.lokal_assessment_jobs.ui
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinayakgardi.lokal_assessment_jobs.R
 import com.vinayakgardi.lokal_assessment_jobs.adapter.JobItemAdapter
@@ -27,14 +26,18 @@ class JobFragment : Fragment() {
     private lateinit var binding: FragmentJobBinding
     private lateinit var adapter: JobItemAdapter
     private var jobList = listOf<Result>()
-    private lateinit var navController : NavController
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentJobBinding.inflate(inflater, container, false)
+
 
         setupRecyclerView()
         checkInternetAndFetchData()
@@ -44,8 +47,8 @@ class JobFragment : Fragment() {
 
     private fun checkInternetAndFetchData() {
         if (!Utilities.isInternetAvailable(requireContext())) {
-            // Redirect to BookmarkFragment if there is no internet
-            redirectToBookmarkFragment()
+            // Show an alert dialog if there is no internet
+            showNoInternetDialog()
         } else {
             getApiData()
         }
@@ -74,10 +77,20 @@ class JobFragment : Fragment() {
         binding.jobRecyclerView.adapter = adapter
     }
 
-    private fun redirectToBookmarkFragment() {
-        // Replace with the actual implementation for navigating to BookmarkFragment
-        navController = findNavController()
-        navController.navigate(R.id.action_jobFragment_to_bookMarkFragment)
-
+    private fun showNoInternetDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("No Internet Connection")
+        builder.setMessage("Internet connection is unavailable. Please enable internet to proceed.")
+        builder.setPositiveButton("Enable") { _, _ ->
+            // Open system settings for internet connection
+            val intent = Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
+            startActivity(intent)
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+            // Optionally handle cancel action if needed
+            activity?.finish() // Close the activity or navigate back
+        }
+        builder.create().show()
     }
 }

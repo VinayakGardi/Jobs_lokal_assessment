@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/icon_stealth"
     tools:context=".ui.MainActivity">
 
     <fragment
@@ -27,11 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:elevation="20dp"
-        app:duration="175"
+        app:backgroundColor="@color/background_card"
+        app:duration="150"
         app:iconSize="@dimen/_20ssp"
-        app:iconTint="@color/white"
+        app:iconTint="@color/icon_stealth"
         app:iconTintActive="@color/white"
-        app:indicatorColor="#972C2C"
+        app:indicatorColor="@color/selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
